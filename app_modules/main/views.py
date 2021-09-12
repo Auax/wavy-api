@@ -11,7 +11,7 @@ from app_modules.util.logger import log
 app = Flask(__name__, static_folder="/client/build")
 app.config['SECRET_KEY'] = "h3QfpgYepU43mHu4"
 
-# cors = CORS(app) # Comment this on deployment
+cors = CORS(app) # Comment this on deployment
 # Enable logger and engineio_logger for debug purposes
 socketio = SocketIO(app, cors_allowed_origins="*",
                     logger=False, engineio_logger=False)
