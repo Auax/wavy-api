@@ -1,0 +1,4 @@
+colorama==0.4.4
+Flask==2.0.1
+Flask-SocketIO==5.1.1
+Flask-Cors==3.0.10
