@@ -5,8 +5,8 @@ from flask import Flask, request
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_cors import CORS
 
-from app.util.rooms import Room, Rooms
-from app.util.logger import log
+from app_modules.util.rooms import Room, Rooms
+from app_modules.util.logger import log
 
 app = Flask(__name__, static_folder="/client/build")
 app.config['SECRET_KEY'] = "h3QfpgYepU43mHu4"
