@@ -28,16 +28,8 @@ class Rooms:
     def add_username(self, username: str, room_id: str) -> bool:
         for room in self.chain:
             if room["id"] == room_id:
-                if room_usernames := room.get("usernames"):
-                    for room_username in room_usernames:
-                        if room_username != username:
-                            room["usernames"] = []
-                            room["usernames"].append(username)
-                            return True
-                else:
-                    room["usernames"] = []
-                    room["usernames"].append(username)
-                    return True
+                room["usernames"].append(username)
+
         return False
 
     def remove_username(self, username: str, room_id: str) -> bool:
