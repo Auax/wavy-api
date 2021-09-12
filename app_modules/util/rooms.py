@@ -29,6 +29,7 @@ class Rooms:
         for room in self.chain:
             if room["id"] == room_id:
                 room["usernames"].append(username)
+                return True
 
         return False
 
