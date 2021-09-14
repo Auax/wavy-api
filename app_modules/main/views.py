@@ -11,7 +11,8 @@ from app_modules.util.logger import log
 app = Flask(__name__, static_folder="/client/build")
 app.config['SECRET_KEY'] = "h3QfpgYepU43mHu4"
 
-cors = CORS(app, resources={r"/api/*": {"origins": "https://auax.github.io"}})  # Comment this on deployment
+cors = CORS(app, resources={r"/api/*": {"origins": ["http://localhost:3000", "https://auax.github.io"]}})
+
 # Enable logger and engineio_logger for debug purposes
 socketio = SocketIO(app, cors_allowed_origins="https://auax.github.io",
                     logger=False, engineio_logger=False)
