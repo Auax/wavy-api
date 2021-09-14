@@ -7,6 +7,7 @@ from flask_cors import CORS
 
 from app_modules.util.rooms import Room, Rooms
 from app_modules.util.logger import log
+from app_modules.util.captcha import verify_captcha
 
 app = Flask(__name__, static_folder="/client/build")
 app.config['SECRET_KEY'] = "h3QfpgYepU43mHu4"
@@ -35,30 +36,40 @@ def create_room():
         room_description_ = request_data.get("description")
         is_private_ = request_data.get("is_private")
         password_ = request_data.get("password")
+        captcha_token_ = request_data.get("captcha_token")
 
-        if room_name_:
-            if is_private_ and len(password_) < 4:
-                return {"400": "The password must be at least 4 characters!"}
+        captcha_res = verify_captcha(captcha_token_)
+        print(captcha_res)
+        print(captcha_res["score"])
+        if captcha_res["success"]:
+            # Check if captcha score is higher than 0.7 (ranges from 0.0 to 1.0)
+            if captcha_res["score"] > 0.7:
+                if room_name_:
+                    if is_private_ and len(password_) < 4:
+                        return {"400": "The password must be at least 4 characters!"}
 
-            if not is_private_ and password_:
-                password_ = None
+                    if not is_private_ and password_:
+                        password_ = None
 
-            if len(room_name_) > 30 or len(room_description_) > 150 or len(password_) > 200:
-                return {"400": "Too long input values!"}
+                    if len(room_name_) > 30 or len(room_description_) > 150 or len(password_) > 200:
+                        return {"400": "Too long input values!"}
 
-            room = Room(
-                room_name_,
-                room_description_,
-                is_private_,
-                password_
-            )
+                    room = Room(
+                        room_name_,
+                        room_description_,
+                        is_private_,
+                        password_
+                    )
 
-            rooms.add(asdict(room))
-            return {"200": room.id}
+                    rooms.add(asdict(room))
+                    return {"200": room.id}
 
+                else:
+                    return {"400": "Please fill the correct values!"}
+            else:
+                return {"400": "Captcha score is too low to determine you are human."}
         else:
-            return {"400": "Please fill the correct values!"}
-
+            return {"400": "Captcha error!"}
     return {"400": "Method is not POST."}
 
 
