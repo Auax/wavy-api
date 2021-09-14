@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b0eda04f-9318-4d26-bf77-22c28beefac1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/app_modules/util/captcha.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_modules/util/captcha.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_modules/util/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_modules/util/logger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client" beforeDir="false" afterPath="$PROJECT_DIR$/client" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

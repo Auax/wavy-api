@@ -1,6 +1,5 @@
 import requests
 import os
-from logger import log
 
 
 def verify_captcha(token) -> [dict, bool]:
@@ -16,6 +15,6 @@ def verify_captcha(token) -> [dict, bool]:
             return res.json()
 
     except KeyError as e:
-        log("ERROR", f"Exception: {e}", 3)
+        print(e)
 
     return False
