@@ -7,6 +7,7 @@ colorama.init(autoreset=True)
 def log(identifier: Any, v: Any, mode: int = 1) -> None:
     """
     Simple function to improve text printing
+    :param identifier: identifier
     :param v: text to print
     :param mode: (1=Success)(2=Warning)(3=Error)
     :return: None
