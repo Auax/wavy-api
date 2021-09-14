@@ -26,7 +26,10 @@ class Rooms:
         self.chain.append(value)
 
     def add_username(self, username: str, room_id: str) -> bool:
+        print(username)
+        print(room_id)
         for room in self.chain:
+            print(room)
             if room["id"] == room_id:
                 room["usernames"].append(username)
                 return True

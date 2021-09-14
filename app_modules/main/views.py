@@ -11,7 +11,7 @@ from app_modules.util.logger import log
 app = Flask(__name__, static_folder="/client/build")
 app.config['SECRET_KEY'] = "h3QfpgYepU43mHu4"
 
-cors = CORS(app) # Comment this on deployment
+cors = CORS(app)  # Comment this on deployment
 # Enable logger and engineio_logger for debug purposes
 socketio = SocketIO(app, cors_allowed_origins="*",
                     logger=False, engineio_logger=False)
@@ -96,9 +96,12 @@ def on_join(data):
 
 @socketio.on("message")
 def handle_message(data):
-    channel = data["channel"]
-    message = data["message"]
-    username = data["username"]
+    try:
+        channel = data["channel"]
+        message = data["message"]
+        username = data["username"]
+    except KeyError:
+        return False
 
     log("incoming message",
         f"USER={username} ROOM={channel} MESSAGE={message}")
