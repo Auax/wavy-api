@@ -16,7 +16,7 @@ app.config['SECRET_KEY'] = os.environ["app_key"]
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Enable logger and engineio_logger for debug purposes
-socketio = SocketIO(app, cors_allowed_origins="https://auax.github.io",
+socketio = SocketIO(app, cors_allowed_origins="*",
                     logger=False, engineio_logger=False)
 
 rooms = Rooms()
