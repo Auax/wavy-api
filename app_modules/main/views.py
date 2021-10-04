@@ -12,11 +12,12 @@ from app_modules.util.captcha import verify_captcha
 
 app = Flask(__name__, static_folder="/client/build")
 app.config['SECRET_KEY'] = os.environ["app_key"]
+ALLOWED_ORIGINS = os.environ["ALLOWED_ORIGINS"]
 
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/api/*": {"origins": ALLOWED_ORIGINS}})
 
 # Enable logger and engineio_logger for debug purposes
-socketio = SocketIO(app, cors_allowed_origins="*",
+socketio = SocketIO(app, cors_allowed_origins=ALLOWED_ORIGINS,
                     logger=False, engineio_logger=False)
 
 rooms = Rooms()
