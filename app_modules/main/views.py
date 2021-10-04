@@ -1,4 +1,5 @@
 import json
+import os
 from dataclasses import asdict
 
 from flask import Flask, request
@@ -10,9 +11,9 @@ from app_modules.util.logger import log
 from app_modules.util.captcha import verify_captcha
 
 app = Flask(__name__, static_folder="/client/build")
-app.config['SECRET_KEY'] = "h3QfpgYepU43mHu4"
+app.config['SECRET_KEY'] = os.environ["app_key"]
 
-cors = CORS(app, resources={r"/api/*": {"origins": "https://auax.github.io"}})
+cors = CORS(app, resources={r"/api/*": {"origins": ["https://auax.github.io", "http://localhost"]}})
 
 # Enable logger and engineio_logger for debug purposes
 socketio = SocketIO(app, cors_allowed_origins="https://auax.github.io",
