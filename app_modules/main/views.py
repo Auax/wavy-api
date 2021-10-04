@@ -13,7 +13,7 @@ from app_modules.util.captcha import verify_captcha
 app = Flask(__name__, static_folder="/client/build")
 app.config['SECRET_KEY'] = os.environ["app_key"]
 
-cors = CORS(app, resources={r"/api/*": {"origins": ["https://auax.github.io", "http://localhost"]}})
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Enable logger and engineio_logger for debug purposes
 socketio = SocketIO(app, cors_allowed_origins="https://auax.github.io",
