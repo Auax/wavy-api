@@ -1,8 +1,9 @@
 import requests
 import os
+from typing import Union
 
 
-def verify_captcha(token) -> [dict, bool]:
+def verify_captcha(token) -> Union[dict, bool]:
     try:
         data = {"secret": os.environ["captcha_secret"],
                 "response": token}
