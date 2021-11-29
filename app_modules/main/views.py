@@ -124,12 +124,14 @@ def validate_user():
 
 
 @app.route("/api/room/<int:id_>")
+@cross_origin(supports_credentials=True)
 def room_info(id_):
     room = rooms.get(id_, secure=True)
     return {"200": room} if room else {"404": "No room found"}
 
 
 @app.route('/api/join', methods=['POST', 'GET'])
+@cross_origin(supports_credentials=True)
 def join():
     """
     API endpoint to join a room.
