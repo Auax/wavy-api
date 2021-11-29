@@ -33,7 +33,7 @@ rooms = Rooms()
 
 @app.route('/api/rooms')
 @cross_origin(supports_credentials=True)
-def home():
+def api_rooms():
     return {"rooms": rooms.secure_api} if rooms.secure_api else {"200": "No Rooms"}
 
 
@@ -124,8 +124,8 @@ def validate_user():
 
 
 @app.route("/api/room/<int:id>")
-def room_info(id):
-    room = rooms.get(id, secure=True)
+def room_info(id_):
+    room = rooms.get(id_, secure=True)
     return {"200": room} if room else {"404": "No room found"}
 
 
