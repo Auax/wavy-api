@@ -123,7 +123,7 @@ def validate_user():
         return {"400": "Invalid method!"}
 
 
-@app.route("/api/room/<int:id>")
+@app.route("/api/room/<int:id_>")
 def room_info(id_):
     room = rooms.get(id_, secure=True)
     return {"200": room} if room else {"404": "No room found"}
